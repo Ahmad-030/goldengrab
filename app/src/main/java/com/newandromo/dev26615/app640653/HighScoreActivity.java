@@ -1,10 +1,12 @@
 // File: HighScoreActivity.java
 package com.newandromo.dev26615.app640653;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.List;
 
@@ -19,11 +21,27 @@ public class HighScoreActivity extends AppCompatActivity {
 
         scoresContainer = findViewById(R.id.scoresContainer);
         Button backBtn = findViewById(R.id.btnBack);
+        Button clearBtn = findViewById(R.id.btnClearScores);
 
         scoreManager = new HighScoreManager(this);
         displayHighScores();
 
         backBtn.setOnClickListener(v -> finish());
+
+        clearBtn.setOnClickListener(v -> showClearConfirmDialog());
+    }
+
+    private void showClearConfirmDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Clear High Scores")
+                .setMessage("Are you sure you want to delete all high scores? This action cannot be undone.")
+                .setPositiveButton("Yes, Clear All", (dialog, which) -> {
+                    scoreManager.clearAllScores();
+                    displayHighScores();
+                    Toast.makeText(this, "All high scores cleared!", Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
     }
 
     private void displayHighScores() {

@@ -3,6 +3,7 @@ package com.newandromo.dev26615.app640653;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class HighScoreManager {
+    private static final String TAG = "HighScoreManager";
     private static final String PREFS_NAME = "GoldenGrabHighScores";
     private static final String SCORES_KEY = "scores";
     private SharedPreferences prefs;
@@ -22,9 +24,13 @@ public class HighScoreManager {
     public void addScore(int score) {
         List<ScoreEntry> scores = getTopScores(100);
 
-        String date = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
+        String date = new SimpleDateFormat("MMM dd, yyyy HH:mm", Locale.getDefault())
                 .format(new Date());
-        scores.add(new ScoreEntry(score, date));
+
+        ScoreEntry newEntry = new ScoreEntry(score, date);
+        scores.add(newEntry);
+
+        Log.d(TAG, "Adding new score: " + score + " on " + date);
 
         // Sort by score descending
         Collections.sort(scores, (a, b) -> b.score - a.score);
@@ -35,23 +41,27 @@ public class HighScoreManager {
         }
 
         saveScores(scores);
+
+        Log.d(TAG, "Score saved successfully. Total scores: " + scores.size());
     }
 
     public List<ScoreEntry> getTopScores(int limit) {
         String scoresData = prefs.getString(SCORES_KEY, "");
         List<ScoreEntry> scores = new ArrayList<>();
 
+        Log.d(TAG, "Reading scores from SharedPreferences: " + scoresData);
+
         if (!scoresData.isEmpty()) {
             String[] entries = scoresData.split(";");
             for (String entry : entries) {
-                String[] parts = entry.split(",");
+                String[] parts = entry.split(",", 2); // Split only on first comma
                 if (parts.length == 2) {
                     try {
-                        int score = Integer.parseInt(parts[0]);
-                        String date = parts[1];
+                        int score = Integer.parseInt(parts[0].trim());
+                        String date = parts[1].trim();
                         scores.add(new ScoreEntry(score, date));
                     } catch (NumberFormatException e) {
-                        e.printStackTrace();
+                        Log.e(TAG, "Error parsing score entry: " + entry, e);
                     }
                 }
             }
@@ -74,7 +84,14 @@ public class HighScoreManager {
                 sb.append(";");
             }
         }
-        prefs.edit().putString(SCORES_KEY, sb.toString()).apply();
+        String scoresString = sb.toString();
+        prefs.edit().putString(SCORES_KEY, scoresString).apply();
+        Log.d(TAG, "Saved scores to SharedPreferences: " + scoresString);
+    }
+
+    public void clearAllScores() {
+        prefs.edit().remove(SCORES_KEY).apply();
+        Log.d(TAG, "All scores cleared");
     }
 
     public static class ScoreEntry {

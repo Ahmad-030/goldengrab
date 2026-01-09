@@ -66,14 +66,34 @@
 
     </ScrollView>
 
-    <Button
-        android:id="@+id/btnBack"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="⬅️ Back to Menu"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:backgroundTint="#FFD700"
-        android:layout_margin="20dp"/>
+        android:orientation="horizontal"
+        android:padding="20dp">
+
+        <Button
+            android:id="@+id/btnClearScores"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="10dp"
+            android:text="🗑️ Clear All"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:backgroundTint="#FF5722"/>
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:text="⬅️ Back"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:backgroundTint="#FFD700"/>
+
+    </LinearLayout>
 
 </LinearLayout>

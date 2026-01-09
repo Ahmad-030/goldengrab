@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class GameActivity extends AppCompatActivity {
+    private static final String TAG = "GameActivity";
     private GameView gameView;
     private TextView scoreText;
     private int currentScore = 0;
@@ -37,6 +39,15 @@ public class GameActivity extends AppCompatActivity {
         runOnUiThread(() -> {
             gameView.pauseGame();
 
+            // Save high score IMMEDIATELY when game ends
+            HighScoreManager manager = new HighScoreManager(this);
+            Log.d(TAG, "Game Over - Saving score: " + currentScore);
+            manager.addScore(currentScore);
+
+            // Verify it was saved
+            int totalScores = manager.getTopScores(100).size();
+            Log.d(TAG, "Total scores now saved: " + totalScores);
+
             Dialog dialog = new Dialog(this);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.setContentView(R.layout.dialog_game_over);
@@ -46,12 +57,9 @@ public class GameActivity extends AppCompatActivity {
             TextView finalScore = dialog.findViewById(R.id.finalScoreText);
             Button restartBtn = dialog.findViewById(R.id.btnRestart);
             Button menuBtn = dialog.findViewById(R.id.btnMenu);
+            Button viewScoresBtn = dialog.findViewById(R.id.btnViewScores);
 
             finalScore.setText("Your Score: " + currentScore);
-
-            // Save high score
-            HighScoreManager manager = new HighScoreManager(this);
-            manager.addScore(currentScore);
 
             restartBtn.setOnClickListener(v -> {
                 dialog.dismiss();
@@ -60,6 +68,13 @@ public class GameActivity extends AppCompatActivity {
 
             menuBtn.setOnClickListener(v -> {
                 dialog.dismiss();
+                finish();
+            });
+
+            viewScoresBtn.setOnClickListener(v -> {
+                dialog.dismiss();
+                Intent intent = new Intent(GameActivity.this, HighScoreActivity.class);
+                startActivity(intent);
                 finish();
             });
 
