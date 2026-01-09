@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="320dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_background"
+    android:padding="30dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Golden Grab"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="#B8860B"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Game Description"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#555555"
+        android:layout_marginBottom="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Catch as many golden coins as you can while avoiding obstacles! Test your reflexes and hand-eye coordination in this fast-paced arcade game. The more coins you collect, the higher your score climbs. Can you beat your personal best and become the ultimate coin catcher?"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:lineSpacingExtra="4dp"
+        android:layout_marginBottom="30dp"/>
+
+    <Button
+        android:id="@+id/btnClose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Close"
+        android:textSize="18sp"
+        android:backgroundTint="#FFD700"/>
+
+</LinearLayout>

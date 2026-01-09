@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#87CEEB"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to\nGolden Grab!"
+        android:textSize="38sp"
+        android:textStyle="bold"
+        android:textColor="#B8860B"
+        android:gravity="center"
+        android:layout_marginBottom="80dp"/>
+
+    <Button
+        android:id="@+id/btnStartGame"
+        android:layout_width="280dp"
+        android:layout_height="65dp"
+        android:text="🎮 Start Game"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:backgroundTint="#FFD700"
+        android:layout_marginBottom="25dp"/>
+
+    <Button
+        android:id="@+id/btnHighScores"
+        android:layout_width="280dp"
+        android:layout_height="65dp"
+        android:text="🏆 High Scores"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:backgroundTint="#FFD700"
+        android:layout_marginBottom="25dp"/>
+
+    <Button
+        android:id="@+id/btnAbout"
+        android:layout_width="280dp"
+        android:layout_height="65dp"
+        android:text="ℹ️ About"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:backgroundTint="#FFD700"/>
+
+</LinearLayout>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#87CEEB">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="🏆 High Scores 🏆"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="#B8860B"
+        android:gravity="center"
+        android:padding="30dp"
+        android:background="#FFD700"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="20dp"
+        android:background="#FFFFFF">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Rank"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#B8860B"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Score"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#B8860B"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Date"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#B8860B"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#FFFFFF">
+
+        <LinearLayout
+            android:id="@+id/scoresContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"/>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="⬅️ Back to Menu"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:backgroundTint="#FFD700"
+        android:layout_margin="20dp"/>
+
+</LinearLayout>
